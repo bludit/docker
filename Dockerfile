@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Diego Najar
 
 # Variables
-ENV NGINX_VERSION 1.11.10-1~jessie
+ENV NGINX_VERSION 1.10.1-1~jessie
 ENV nginx_conf /etc/nginx/nginx.conf
 ENV php_conf /etc/php5/fpm/php.ini
 ENV fpm_conf /etc/php5/fpm/php-fpm.conf

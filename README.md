@@ -1,6 +1,16 @@
-# Bludit on Docker
+# Bludit Docker Image
 
-## Create container
+## Run the container
 ```
-$ docker run --name bludit -p 8000:80 -d docker-bludit
+$ docker run --name bludit -p 8000:80 -d dignajar/bludit
+```
+
+## Stop the container
+```
+$ docker stop bludit
+```
+
+## Delete the container
+```
+$ docker rm bludit
 ```
