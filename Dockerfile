@@ -1,13 +1,13 @@
 FROM debian:jessie
-MAINTAINER Diego
+MAINTAINER Diego Najar
 
 # Variables
-ENV NGINX_VERSION 1.10.1-1~jessie
+ENV NGINX_VERSION 1.11.10-1~jessie
 ENV nginx_conf /etc/nginx/nginx.conf
 ENV php_conf /etc/php5/fpm/php.ini
 ENV fpm_conf /etc/php5/fpm/php-fpm.conf
 ENV fpm_pool /etc/php5/fpm/pool.d/www.conf
-ENV bludit_zip https://s3.amazonaws.com/bludit-s3/bludit-builds/bludit-1-4.zip
+ENV bludit_zip https://s3.amazonaws.com/bludit-s3/bludit-builds/bludit_latest.zip
 
 # Packages installation
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 && \
@@ -23,6 +23,7 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
 						nginx-module-njs \
 						gettext-base \
                         php5-fpm \
+						php5-gd \
 						unzip \
 						axel \
 						supervisor
