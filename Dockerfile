@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Diego Najar
 
 # Variables
-ENV NGINX_VERSION 1.10.1-1~jessie
+ENV NGINX_VERSION 1.10.3-1~jessie
 ENV nginx_conf /etc/nginx/nginx.conf
 ENV php_conf /etc/php5/fpm/php.ini
 ENV fpm_conf /etc/php5/fpm/php-fpm.conf
@@ -23,6 +23,7 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
 						nginx-module-njs \
 						gettext-base \
                         			php5-fpm \
+						php5-gd \
 						unzip \
 						axel \
 						supervisor
