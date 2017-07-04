@@ -30,8 +30,10 @@ RUN apt-get update \
 						nginx-module-image-filter=${NGINX_VERSION} \
 						nginx-module-njs=${NJS_VERSION} \
 						gettext-base \
-                        			php5-fpm \
-						php5-gd \
+                        			php-fpm \
+						php-gd \
+						php-zip \
+						php-xml \
 						unzip \
 						axel \
 						supervisor
