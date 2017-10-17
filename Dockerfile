@@ -4,12 +4,11 @@ ENV nginx_conf /etc/nginx/nginx.conf
 ENV php_conf /etc/php.ini
 ENV fpm_conf /etc/php-fpm.conf
 ENV fpm_pool /etc/php-fpm.d/www.conf
-ENV bludit_zip https://s3.amazonaws.com/bludit-s3/bludit-builds/bludit_latest.zip
 
 RUN yum -y update
 RUN yum install -y epel-release
 RUN yum install -y nginx php-fpm php-gd php-json php-dom php-xml php-zip php-mbstring
-RUN yum install -y supervisor unzip axel
+RUN yum install -y supervisor unzip jq
 
 # Configs files
 RUN sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" ${php_conf} && \
@@ -49,7 +48,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 
 # Bludit installation
 RUN cd /tmp/; \
-	axel ${bludit_zip} -o /tmp/bludit.zip; \
+	curl -o /tmp/bludit.zip `curl --silent https://version.bludit.com | jq -r .stable.downloadLink` \
 	unzip /tmp/bludit.zip; \
 	rm -rf /usr/share/nginx/html; \
 	cp -r /tmp/bludit /usr/share/nginx/html; \
