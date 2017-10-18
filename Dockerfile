@@ -47,15 +47,14 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 	ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Bludit installation
-RUN cd /tmp/; \
+RUN cd /tmp/ \
 	curl -o /tmp/bludit.zip `curl --silent https://version.bludit.com | jq -r .stable.downloadLink` \
-	unzip /tmp/bludit.zip; \
-	rm -rf /usr/share/nginx/html; \
-	cp -r /tmp/bludit /usr/share/nginx/html; \
-	chown -R nginx:nginx /usr/share/nginx/html; \
-	chmod 755 /usr/share/nginx/html/bl-content; \
-	rm /tmp/bludit.zip; \
-	rm -rf /tmp/bludit
+	unzip /tmp/bludit.zip \
+	rm -rf /usr/share/nginx/html \
+	mv bludit-* /usr/share/nginx/html \
+	chown -R nginx:nginx /usr/share/nginx/html \
+	chmod 755 /usr/share/nginx/html/bl-content \
+	rm /tmp/bludit.zip
 
 EXPOSE 80
 
