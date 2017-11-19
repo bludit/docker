@@ -27,6 +27,6 @@ $ docker rmi bludit/docker:latest
 ## Kubernetes
 Run Bludit on K8s.
 ```
-$ kubectl apply -f kuberntest/deployment.yml
-$ kubectl apply -f kuberntest/service.yml
+$ kubectl apply -f kubernetes/deployment.yml
+$ kubectl apply -f kubernetes/service.yml
 ```
