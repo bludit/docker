@@ -1,0 +1,22 @@
+---
+apiVersion: extensions/v1beta2
+kind: Deployment
+metadata:
+  name: bludit-deployment
+  labels:
+    app: bludit
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bludit
+    spec:
+      containers:
+      - name: bludit
+        image: bludit/docker:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+          name: webserver
+          protocol: TCP
