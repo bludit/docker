@@ -18,5 +18,5 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
-          name: webserver
+          name: http
           protocol: TCP
