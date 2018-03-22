@@ -8,28 +8,35 @@ You can run Bludit as a Docker container.
 Find the deployment and service for Kubernetes on the directory `kubernetes`.
 
 ### Run the container
+
 ```
 $ docker run --name bludit -p 8000:80 -d bludit/docker:latest
 ```
+
 To get access go with your browser to http://localhost:8000
 
 ### Stop the container
+
 ```
 $ docker stop bludit
 ```
 
 ### Delete the container
+
 ```
 $ docker rm bludit
 ```
 
 ### Delete the image
+
 ```
 $ docker rmi bludit/docker:latest
 ```
 
 ### Kubernetes
+
 Run Bludit on K8s.
+
 ```
 $ kubectl apply -f kubernetes/deployment.yml
 $ kubectl apply -f kubernetes/service.yml
