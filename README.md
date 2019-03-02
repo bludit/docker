@@ -15,7 +15,7 @@ $ docker run --name bludit -p 8000:80 -d bludit/docker:latest
 
 To get access go with your browser to http://localhost:8000
 
-## Run the container and mounting a volume to persistent data
+## Run the container and mounting a volume to persist data
 
 ```
 mkdir ~/bludit
