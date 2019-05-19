@@ -5,17 +5,15 @@ You can run Bludit as a Docker container.
 
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-Deployment-blue.svg)](https://github.com/bludit/docker/tree/master/kubernetes)
 
-Find the deployment and service for Kubernetes on the directory `kubernetes`.
-
 ### Run the container
 
 ```
 $ docker run --name bludit -p 8000:80 -d bludit/docker:latest
 ```
 
-To get access go with your browser to http://localhost:8000
+To get access visit with your browser http://localhost:8000
 
-## Run the container and mounting a volume to persist data
+### Run the container and mounting a volume to persist data
 
 ```
 mkdir ~/bludit
@@ -26,7 +24,7 @@ docker run --name bludit \
     -d bludit/docker:latest
 ```
 
-To get access go with your browser to http://localhost:8000
+To get access visit with your browser http://localhost:8000
 
 ### Stop the container
 
@@ -46,7 +44,7 @@ $ docker rm bludit
 $ docker rmi bludit/docker:latest
 ```
 
-### Kubernetes
+## Kubernetes
 
 Run Bludit on K8s.
 
