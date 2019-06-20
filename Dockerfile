@@ -50,8 +50,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 	ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Bludit installation
-RUN cd /tmp/ && \
-	curl -o /tmp/bludit.zip ${bludit_url} && \
+WORKDIR /tmp
+RUN curl -o /tmp/bludit.zip ${bludit_url} && \
 	unzip /tmp/bludit.zip && \
 	rm -rf /usr/share/nginx/html && \
 	mv bludit-* /usr/share/nginx/html && \
