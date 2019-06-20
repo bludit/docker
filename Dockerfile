@@ -41,9 +41,9 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Configurations files
-ADD conf/default.conf ${nginx_path}/conf.d/default.conf
-ADD conf/nginx.conf ${nginx_conf}
-ADD conf/supervisord.conf /etc/supervisord.conf
+COPY conf/default.conf ${nginx_path}/conf.d/default.conf
+COPY conf/nginx.conf ${nginx_conf}
+COPY conf/supervisord.conf /etc/supervisord.conf
 
 # Nginx logs to Docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
