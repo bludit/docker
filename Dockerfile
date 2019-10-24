@@ -1,7 +1,7 @@
 FROM centos:centos7
 
 ENV bludit_content /usr/share/nginx/html/bl-content
-ENV bludit_url https://www.bludit.com/releases/bludit-3-9-2.zip
+ENV bludit_url https://www.bludit.com/releases/bludit-3-10-0.zip
 
 ENV nginx_path /etc/nginx
 ENV nginx_conf ${nginx_path}/nginx.conf
