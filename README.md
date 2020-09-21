@@ -1,5 +1,5 @@
 # Bludit Docker Image
-You can run Bludit as a Docker container.
+This Docker container provides a quick solution to run a website with Bludit, if you are going to run this Docker container in a production environment, I would recommend to improve the security on it.
 
 [![Docker Hub](https://img.shields.io/badge/Docker-Hub-blue.svg)](https://hub.docker.com/r/bludit/docker/)
 
