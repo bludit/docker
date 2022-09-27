@@ -45,6 +45,9 @@ COPY conf/default.conf ${nginx_path}/conf.d/default.conf
 COPY conf/nginx.conf ${nginx_conf}
 COPY conf/supervisord.conf /etc/supervisord.conf
 
+# Entrypoint file
+COPY docker-entrypoint.sh /
+
 # Nginx logs to Docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 	ln -sf /dev/stderr /var/log/nginx/error.log
@@ -54,7 +57,7 @@ WORKDIR /tmp
 RUN curl -o /tmp/bludit.zip ${bludit_url} && \
 	unzip /tmp/bludit.zip && \
 	rm -rf /usr/share/nginx/html && \
-	mv bludit-* /usr/share/nginx/html && \
+	cp -r bludit-* /usr/share/nginx/html && \
 	chown -R nginx:nginx /usr/share/nginx/html && \
 	chmod 755 ${bludit_content} && \
 	sed -i "s/'DEBUG_MODE', FALSE/'DEBUG_MODE', TRUE/g" /usr/share/nginx/html/bl-kernel/boot/init.php && \
@@ -62,4 +65,4 @@ RUN curl -o /tmp/bludit.zip ${bludit_url} && \
 
 EXPOSE 80
 
-CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
+CMD ["/docker-entrypoint.sh"]
