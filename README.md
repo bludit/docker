@@ -24,6 +24,21 @@ docker run --name bludit \
     -d bludit/docker:latest
 ```
 
+#### Run the container and mount volumes to persist themes & plugins
+
+```
+mkdir ~/bludit
+mkdir ~/bludit-themes
+mkdir ~/bludit-plugins
+
+docker run --name bludit \
+    -p 8000:80 \
+    -v ~/bludit:/usr/share/nginx/html/bl-content \
+    -v ~/bludit-themes:/usr/share/nginx/html/bl-themes \
+    -v ~/bludit-plugins:/usr/share/nginx/html/bl-plugins \
+    -d bludit/docker:latest
+```
+
 To get access visit with your browser http://localhost:8000
 
 ### Stop the container
