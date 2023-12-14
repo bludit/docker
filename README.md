@@ -8,7 +8,7 @@ This Docker container provides a quick solution to run a website with Bludit, if
 ### Run the container
 
 ```
-$ docker run --name bludit -p 8000:80 -d bludit/docker:latest
+$ docker run --name bludit -p 127.0.0.1:8000:80 -d bludit/docker:latest
 ```
 
 To get access visit with your browser http://localhost:8000
