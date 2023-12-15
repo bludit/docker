@@ -1,7 +1,7 @@
 FROM centos:centos7
 
 ENV bludit_content /usr/share/nginx/html/bl-content
-ENV bludit_url https://www.bludit.com/releases/bludit-3-13-1.zip
+ENV bludit_url https://www.bludit.com/releases/bludit-3-15-0.zip
 
 ENV nginx_path /etc/nginx
 ENV nginx_conf ${nginx_path}/nginx.conf
@@ -57,7 +57,7 @@ WORKDIR /tmp
 RUN curl -o /tmp/bludit.zip ${bludit_url} && \
 	unzip /tmp/bludit.zip && \
 	rm -rf /usr/share/nginx/html && \
-	cp -r bludit-* /usr/share/nginx/html && \
+	cp -r bludit /usr/share/nginx/html && \
 	chown -R nginx:nginx /usr/share/nginx/html && \
 	chmod 755 ${bludit_content} && \
 	sed -i "s/'DEBUG_MODE', FALSE/'DEBUG_MODE', TRUE/g" /usr/share/nginx/html/bl-kernel/boot/init.php && \
