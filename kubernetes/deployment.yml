@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bludit-deployment
+  labels:
+    app: bludit
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bludit
+  template:
+    metadata:
+      labels:
+        app: bludit
+    spec:
+      containers:
+      - name: bludit
+        image: bludit:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
