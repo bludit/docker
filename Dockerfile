@@ -1,17 +1,22 @@
 FROM centos:centos7
 
 ENV bludit_content /usr/share/nginx/html/bl-content
-ENV bludit_url https://www.bludit.com/releases/bludit-3-15-0.zip
+ENV bludit_url https://www.bludit.com/releases/bludit-3-16-1.zip
 
 ENV nginx_path /etc/nginx
 ENV nginx_conf ${nginx_path}/nginx.conf
-ENV php_conf /etc/opt/rh/rh-php72/php.ini
-ENV fpm_conf /etc/opt/rh/rh-php72/php-fpm.conf
-ENV fpm_pool /etc/opt/rh/rh-php72/php-fpm.d/www.conf
+ENV php_conf /etc/opt/remi/php72/php.ini
+ENV fpm_conf /etc/opt/remi/php72/php-fpm.conf
+ENV fpm_pool /etc/opt/remi/php72/php-fpm.d/www.conf
 
-RUN yum install -y epel-release centos-release-scl.noarch && \
+RUN sed -i 's/mirrorlist/vault/g' /etc/yum.repos.d/CentOS-* && \
+	sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+RUN yum install -y epel-release && \
+	yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm  && \
+	yum-config-manager --enable remi-php72  && \
 	yum -y update && \
-	yum install -y nginx rh-php72-php-fpm rh-php72-php-gd rh-php72-php-json rh-php72-php-dom rh-php72-php-xml rh-php72-php-zip rh-php72-php-mbstring supervisor unzip jq
+	yum install -y nginx php72-php-fpm php72-php-gd php72-php-json php72-php-dom php72-php-xml php72-php-zip php72-php-mbstring supervisor unzip jq
 
 # Config files
 RUN sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" ${php_conf} && \
@@ -29,7 +34,7 @@ RUN sed -i -e "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm.sock/g" ${
 
 RUN echo "daemon off;" >> ${nginx_conf}
 
-RUN chown -R nginx:nginx /var/opt/rh/rh-php72/lib/php
+RUN chown -R nginx:nginx /var/opt/remi/php72/lib/php
 
 # Clean up
 RUN yum clean all && \
