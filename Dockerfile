@@ -9,8 +9,17 @@ ENV php_conf /etc/opt/rh/rh-php72/php.ini
 ENV fpm_conf /etc/opt/rh/rh-php72/php-fpm.conf
 ENV fpm_pool /etc/opt/rh/rh-php72/php-fpm.d/www.conf
 
-RUN yum install -y epel-release centos-release-scl.noarch && \
-	yum -y update && \
+RUN sed -i s/mirror.centos.org/linuxsoft.cern.ch\\/centos-vault/g /etc/yum.repos.d/*.repo
+RUN sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo
+RUN sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo
+
+RUN yum install -y epel-release centos-release-scl.noarch
+
+RUN sed -i s/mirror.centos.org/linuxsoft.cern.ch\\/centos-vault/g /etc/yum.repos.d/*.repo
+RUN sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo
+RUN sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo
+
+RUN yum -y update && \
 	yum install -y nginx rh-php72-php-fpm rh-php72-php-gd rh-php72-php-json rh-php72-php-dom rh-php72-php-xml rh-php72-php-zip rh-php72-php-mbstring supervisor unzip jq
 
 # Config files
