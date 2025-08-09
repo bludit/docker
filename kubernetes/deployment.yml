@@ -2,11 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bludit-deployment
+  name: bludit
   labels:
     app: bludit
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: bludit
@@ -16,8 +16,27 @@ spec:
         app: bludit
     spec:
       containers:
-      - name: bludit
-        image: bludit:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
+        - name: bludit
+          image: bludit:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 20
