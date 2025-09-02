@@ -42,6 +42,23 @@ docker run --name bludit \
 
 To get access, visit with your browser: [http://localhost:8000](http://localhost:8000)
 
+### Stop the container
+
+```
+$ docker stop bludit
+```
+
+### Delete the container
+
+```
+$ docker rm bludit
+```
+
+### Delete the image
+
+```
+$ docker rmi bludit/docker:latest
+```
 
 #### Run the container with persistent themes & plugins via docker compose
 Minimal example of with named Volume.
@@ -61,23 +78,12 @@ volumes:
   bludit:
 ```
 
-### Stop the container
+### Run the container with docker compose
+    $ docker compose up
 
-```
-$ docker stop bludit
-```
+### Stop the container with docker compose
+    $ docker compose down
 
-### Delete the container
-
-```
-$ docker rm bludit
-```
-
-### Delete the image
-
-```
-$ docker rmi bludit/docker:latest
-```
 
 ## Kubernetes
 
