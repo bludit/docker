@@ -42,6 +42,25 @@ docker run --name bludit \
 
 To get access, visit with your browser: [http://localhost:8000](http://localhost:8000)
 
+
+#### Run the container with persistent themes & plugins via docker compose
+Minimal example of with named Volume.
+
+
+##### docker-compose.yml
+```
+services:
+  bludit:
+    image: bludit/docker:latest
+    ports:
+      - 8000:80
+    volumes:
+      - bludit:/usr/share/nginx/html
+
+volumes:
+  bludit:
+```
+
 ### Stop the container
 
 ```
