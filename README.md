@@ -61,7 +61,7 @@ $ docker rmi bludit/docker:latest
 ```
 
 #### Run the container with persistent themes & plugins via docker compose
-Minimal example of with named Volume.
+Minimal example with named Volume.
 
 
 ##### docker-compose.yml
