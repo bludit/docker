@@ -7,7 +7,7 @@ plugin_dir=/usr/share/nginx/html/bl-plugins
 if [ -z "$(ls -A $theme_dir)" ]; then
   echo "bl-themes directory is empty, initializing..."
   cp -r /tmp/bludit/bl-themes/* $theme_dir
-  chown -R nginx. $theme_dir
+  chown -R www-data. $theme_dir
 else
   echo "bl-themes directory is not empty, skipping..."
 fi
@@ -15,7 +15,7 @@ fi
 if [ -z "$(ls -A $plugin_dir)" ]; then
   echo "bl-plugins directory is empty, initializing..."
   cp -r /tmp/bludit/bl-plugins/* $plugin_dir
-  chown -R nginx. $plugin_dir
+  chown -R www-data. $plugin_dir
 else
   echo "bl-plugins directory is not empty, skipping..."
 fi
