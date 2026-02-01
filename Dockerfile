@@ -26,7 +26,7 @@ RUN curl -o bludit.zip ${bludit_url} && \
     cp -r bludit-3.17.0 /tmp/bludit-backup && \
     rm -rf /usr/share/nginx/html && \
     mv bludit-3.17.0 /usr/share/nginx/html && \
-    chown -R nginx:nginx /usr/share/nginx/html && \
+    chown -R www-data:www-data /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html && \
     sed -i "s/'DEBUG_MODE', FALSE/'DEBUG_MODE', TRUE/g" /usr/share/nginx/html/bl-kernel/boot/init.php && \
     rm -f bludit.zip
