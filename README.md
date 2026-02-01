@@ -40,7 +40,11 @@ docker run --name bludit \
     -d bludit/docker:latest
 ```
 
-To get access, visit with your browser: [http://localhost:8000](http://localhost:8000)
+### Build the image locally
+
+```
+$ docker build -t bludit/docker:latest .
+```
 
 ### Stop the container
 
