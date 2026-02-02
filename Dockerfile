@@ -1,8 +1,8 @@
 FROM php:8.2-fpm-alpine
 
 # Set environment variables
-ENV bludit_content /usr/share/nginx/html/bl-content
-ENV bludit_url https://www.bludit.com/releases/bludit-3-17-0.zip
+ENV bludit_content=/usr/share/nginx/html/bl-content \
+    bludit_url=https://www.bludit.com/releases/bludit-3-17-1.zip
 
 # Install required packages
 RUN apk add --no-cache nginx curl unzip bash
@@ -23,19 +23,16 @@ COPY conf/default.conf /etc/nginx/conf.d/default.conf
 WORKDIR /tmp
 RUN curl -o bludit.zip ${bludit_url} && \
     unzip bludit.zip && \
-    cp -r bludit-3.17.0 /tmp/bludit-backup && \
+    cp -r bludit-3.17.1 /tmp/bludit-backup && \
     rm -rf /usr/share/nginx/html && \
-    mv bludit-3.17.0 /usr/share/nginx/html && \
-    chown -R www-data:www-data /usr/share/nginx/html && \
+    mv bludit-3.17.1 /usr/share/nginx/html && \
+    chown -R nginx:nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html && \
     sed -i "s/'DEBUG_MODE', FALSE/'DEBUG_MODE', TRUE/g" /usr/share/nginx/html/bl-kernel/boot/init.php && \
     rm -f bludit.zip
 
 # Copy entrypoint script
-COPY docker-entrypoint.sh /
-
-# Make entrypoint executable
-RUN chmod +x /docker-entrypoint.sh
+COPY --chmod=755 docker-entrypoint.sh /
 
 # Expose port 80
 EXPOSE 80
