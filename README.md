@@ -64,6 +64,31 @@ $ docker rm bludit
 $ docker rmi bludit/docker:latest
 ```
 
+#### Run the container with persistent themes & plugins via docker compose
+Minimal example with named Volume.
+
+
+##### docker-compose.yml
+```
+services:
+  bludit:
+    image: bludit/docker:latest
+    ports:
+      - 8000:80
+    volumes:
+      - bludit:/usr/share/nginx/html
+
+volumes:
+  bludit:
+```
+
+### Run the container with docker compose
+    $ docker compose up
+
+### Stop the container with docker compose
+    $ docker compose down
+
+
 ## Kubernetes
 
 The Kubernetes manifests are basic and can be improved for better security and shared storage to support multiple replicas.
