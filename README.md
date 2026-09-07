@@ -69,6 +69,5 @@ $ docker rmi bludit/docker:latest
 The Kubernetes manifests are basic and can be improved for better security and shared storage to support multiple replicas.
 
 ```
-$ kubectl apply -f kubernetes/deployment.yml
-$ kubectl apply -f kubernetes/service.yml
+$ kubectl apply -f kubernetes/
 ```

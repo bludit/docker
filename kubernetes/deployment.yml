@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bludit
+  namespace: bludit
   labels:
     app: bludit
 spec:
@@ -17,8 +18,8 @@ spec:
     spec:
       containers:
         - name: bludit
-          image: bludit:latest
-          imagePullPolicy: Always
+          image: bludit/docker:3.22.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
           resources:
@@ -40,3 +41,20 @@ spec:
               port: 80
             initialDelaySeconds: 15
             periodSeconds: 20
+          volumeMounts:
+            - name: bludit-content
+              mountPath: /usr/share/nginx/html/bl-content
+            - name: bludit-plugins
+              mountPath: /usr/share/nginx/html/bl-plugins
+            - name: bludit-themes
+              mountPath: /usr/share/nginx/html/bl-themes
+      volumes:
+        - name: bludit-content
+          persistentVolumeClaim:
+            claimName: bludit-content
+        - name: bludit-plugins
+          persistentVolumeClaim:
+            claimName: bludit-plugins
+        - name: bludit-themes
+          persistentVolumeClaim:
+            claimName: bludit-themes
