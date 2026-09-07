@@ -1,15 +1,15 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.4-fpm-alpine
 
 # Set environment variables
-ENV bludit_version=3.20.0 \
+ENV bludit_version=3.22.0 \
     bludit_content=/usr/share/nginx/html/bl-content \
-    bludit_url=https://github.com/bludit/bludit/archive/refs/tags/3.20.0.zip
+    bludit_url=https://github.com/bludit/bludit/archive/refs/tags/3.22.0.zip
 
 # Install required packages
-RUN apk add --no-cache nginx curl unzip bash
+RUN apk add --no-cache nginx curl unzip bash libzip-dev
 
 # Configure PHP
-RUN docker-php-ext-install opcache
+RUN docker-php-ext-install opcache zip
 
 # Install gd PHP module
 RUN apk add --no-cache libpng-dev libjpeg-turbo-dev freetype-dev \

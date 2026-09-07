@@ -3,6 +3,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: bludit
+  namespace: bludit
 spec:
   selector:
     app: bludit
